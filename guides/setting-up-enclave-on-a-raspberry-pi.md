@@ -15,7 +15,7 @@ Follow these steps to install Enclave on your Raspberry Pi running Raspbian 10 (
 
 ## 1. Install
 
-Open the [download page](https://portal.enclave.io/dashboard/download) section of your account in the Enclave Portal and copy the download link to the setup script for your Raspberry Pi and run it on your device.
+Open the [download page](https://portal.enclave.io/download) section of your account in the Enclave Portal and copy the download link to the setup script for your Raspberry Pi and run it on your device.
 
 ## 2. Licence
 
