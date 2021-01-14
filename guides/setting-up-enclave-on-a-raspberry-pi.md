@@ -19,7 +19,7 @@ Open the [download page](https://portal.enclave.io/dashboard/download) section o
 
 ## 2. Licence
 
-Open the [new license page](https://portal.enclave.io/dashboard/licenses/new) section of your account in the Enclave Portal and provision a new license key for your Raspberry Pi if you need to. Alternatively, if an existing license is available, make note of the license key and use that to licencing the device.
+Open the [new license page](https://portal.enclave.io/enrolmentkeys/new) section of your account in the Enclave Portal and provision a new license key for your Raspberry Pi if you need to. Alternatively, if an existing license is available, make note of the license key and use that to licencing the device.
 
 License the device. If you don't supply the license key at the command line, Enclave will prompt you to enter the license.
 
@@ -57,4 +57,4 @@ You can find your Raspberry Pi's new Enclave IP address and connectivity to othe
 * Running `ifconfig tap0`
 * Running `enclave status`
 
-> Having problems? Contact us [support@enclave.io](support@enclave.io)
+> Having problems? Contact us [support@enclave.io](mailto:support@enclave.io)

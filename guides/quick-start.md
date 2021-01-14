@@ -38,11 +38,11 @@ Setting up a connection between two or more systems requires mutual consent from
 
 ## Installing on Windows
 
-1. From the [downloads section](https://portal.enclave.io/dashboard/download) of your account in the [Enclave Portal](https://portal.enclave.io/), download the latest version of Enclave and run the installer.
+1. From the [downloads section](https://portal.enclave.io/download) of your account in the [Enclave Portal](https://portal.enclave.io/), download the latest version of Enclave and run the installer.
 
 ## Installing on Linux
 
-1. From the [downloads section](https://portal.enclave.io/dashboard/download) of your account in the [Enclave Portal](https://portal.enclave.io/), select the appropriate installation script for your operating system and run in your terminal. If `sudo` is required you will be prompted.
+1. From the [downloads section](https://portal.enclave.io/download) of your account in the [Enclave Portal](https://portal.enclave.io/), select the appropriate installation script for your operating system and run in your terminal. If `sudo` is required you will be prompted.
 
 2. On Linux-based systems, the Enclave binaries unpack to `/opt/enclave/` and configuration and log files reside in `/etc/opt/enclave/`. Once installed, the installation script will display the following message:
 
@@ -56,7 +56,7 @@ Setting up a connection between two or more systems requires mutual consent from
 
 ## Licencing Enclave
 
-To use Enclave, your system requires a certificate. License keys (available from the [Manage License Keys](https://portal.enclave.io/dashboard/licenses) section of your account in the [Enclave Portal](https://portal.enclave.io/)) allow Enclave to request certificates. If you have a trial account, a `30 day trial` license key will have been automatically generated for you.
+To use Enclave, your system requires a certificate. License keys (available from the [Manage License Keys](https://portal.enclave.io/enrolmentkeys) section of your account in the [Enclave Portal](https://portal.enclave.io/)) allow Enclave to request certificates. If you have a trial account, a `30 day trial` license key will have been automatically generated for you.
 
 ### User Interface
 
