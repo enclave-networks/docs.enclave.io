@@ -31,7 +31,7 @@ The Synology NAS allows administrators to fully own their devices, enabling SSH 
 
 Okay, lets get started.
 
-> If you have opened administrative access ports on your Synology NAS drive to the public Internet (default ports are 5000, 5001 and 22 for SSH), you should re-consider if they really need to be open and close those ports if not. They are the default HTTP and HTTPS web server ports for Synology DSM and allow access to the administration console.
+> If you have opened administrative access ports on your Synology NAS drive to the public Internet (default ports are 5000, 5001 and 22 for SSH) you should re-consider if they really need to be open and close those ports if not. They are the default HTTP and HTTPS web server ports for Synology DSM and allow access to the administration console.
 
 <br />
 
@@ -39,7 +39,7 @@ Okay, lets get started.
 
 ## 1. Enable SSH access to your Synology NAS drive
 
-For Enclave to create a virtual network interface, we'll need to ensure that the `tun` kernel module is installed and enabled on the device. We can to this by enabling and connected into the device via SSH. Open the `Control Panel`, navigate to `Terminal & SNMP` and enable the SSH service. 
+For Enclave to create a virtual network interface, we'll need to ensure that the `tun` kernel module is installed and enabled on the device. We do this by enabling and connecting into the device via SSH. Open the `Control Panel`, navigate to `Terminal & SNMP` and enable the SSH service. 
 
 ![Enable SSH access to your Synology NAS drive](/img/guides/synology-enable-ssh.png)
 
@@ -113,7 +113,7 @@ Before clicking `Next`, open the `Advanced Settings` dialog.
 
 * Under the `Volume` tab
 
-   * Select `Add Folder`. Create a mouth path to `/etc/enclave/profiles` in the `docker` directory on your DiskStation. This is where Enclave will write its configuration file, private keys, and certificates to persist between reboots.
+   * Select `Add Folder`. Create a mount path to `/etc/enclave/profiles` in the `docker` directory on your DiskStation. This is where Enclave will write its configuration file, private keys, and certificates to persist between reboots.
 
       ![Create a volume for Enclave configuration data](/img/guides/synology-docker-container-volume-settings.png)
 
@@ -145,7 +145,7 @@ Congratulations! You've finished configuring your container, click `Done` to Lau
 
 ## 6. Connect to the NAS with Enclave
 
-Your Enclave container is starting up and will enrol to your account, within a 1 or 2 seconds your Enclave container will be happily humming away in the background. Let's create a connection to another system running Enclave.
+Your Enclave container is starting up and will enrol to your account, within 1 or 2 seconds your Enclave container will be happily humming away in the background. Let's create a connection to another system running Enclave.
 
 From the Docker package, go to the `Container` tab, select the Enclave container you've just created and open the container `Details` pane. Here you can see CPU usage, RAM usage, container uptime and other information. 
 
