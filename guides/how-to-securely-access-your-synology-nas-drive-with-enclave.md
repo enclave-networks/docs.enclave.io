@@ -15,27 +15,23 @@ Marc Barry on January 20, 2021
 
 Synology are market leaders in network attached storage devices, perfect for home or small business use. Enclave helps you easily build safe, secure and private network connectivity without the hassle of configuring firewalls and VPNs, or needing to manage IP addresses, subnets, ACLs, NAT, routing tables, certificates and secret keys.
 
-In this article we will show you how to provide safe, private remote access to your Synology NAS drive by installing Enclave and darken your network to outside observers at the same time.
+In this article we will show you how to easily provide private remote access to your Synology NAS drive without needing to open ports or setup a VPN server, darkening your network to third parties by installing Enclave.
 
 Before you begin, you will need:
 
-* An Enclave account (Register for free, [here](https://portal.enclave.io/account/register))
+* An Enclave account (Register [here](https://portal.enclave.io/account/register), for free)
 * A Synology NAS drive running at least [DSM 7.0](https://www.synology.com/en-uk/beta/DSM70Beta) (currently in Beta)
-* Administrative access to your Synology NAS
+* Administrative access to your Synology NAS drive
 
-<br />
-
-
-
-Enclave will run inside a Docker container on your Synology NAS drive, but at the time of writing, Docker can only be installed on Synology NAS drives from the Plus Series product line (not the Value Series), so please check to see if your system is a [supported model](#supported-models).
+When setup, Enclave will be running inside a Docker container on your Synology NAS drive. At the time of writing, Docker can only be installed on devices from the Synology Plus Series product line (not the Value Series) so please check to see if your system is a [supported model](#supported-models).
 
 ![Our Synology NAS drive running DSM 7.0 Beta](/img/guides/synology-info-center.png)
 
-The Synology NAS allows administrators to fully own their devices, enabling SSH and dropping into a root bash prompt on the DSM, Synology's Linux-based operating system. 
+The Synology NAS allows administrators to fully own their devices, enabling SSH and dropping into a root bash prompt on the DSM software, Synology's Linux-based operating system.
 
-> If you have exposed either (or both) of your Synology NAS ports 5000 or 5001 open to the Internet, stop reading this article right now and close those ports. They are the default HTTP and HTTPS web server ports for Synology DSM and allow access to the administration page.
+Okay, lets get started.
 
-Lets get started.
+> If you have opened administrative access ports on your Synology NAS drive to the public Internet (default ports are 5000, 5001 and 22 for SSH), you should re-consider if they really need to be open and close those ports if not. They are the default HTTP and HTTPS web server ports for Synology DSM and allow access to the administration console.
 
 <br />
 
@@ -43,7 +39,7 @@ Lets get started.
 
 ## 1. Enable SSH access to your Synology NAS drive
 
-For Enclave to create a virtual network interface, we'll first need to SSH in to your NAS drive and enable the `TUN` kernel module. 
+For Enclave to create a virtual network interface, we'll need to ensure that the `tun` kernel module is installed and enabled on the device. We can to this by enabling and connected into the device via SSH. Open the `Control Panel`, navigate to `Terminal & SNMP` and enable the SSH service. 
 
 ![Enable SSH access to your Synology NAS drive](/img/guides/synology-enable-ssh.png)
 
@@ -65,7 +61,7 @@ If `lsmod` returns no results, you'll need to use `insmod` to install it.
 $ sudo insmod /lib/modules/tun.ko
 ```
 
-Now check `lsmod` again, you should see output similar to
+Now check `lsmod` again, you should see `tun` module is now loaded:
 
 ```
 tun                    19133  0
@@ -73,6 +69,8 @@ tun                    19133  0
 
 ![Install the TUN kernel module](/img/guides/synology-insmod-tun.png)
 
+> We don't need SSH access any more, if you're not going to use it again please go back and disable the SSH service in the DSM Control Panel.
+ 
 <br />
 
 
@@ -89,7 +87,7 @@ The easiest way to install Docker on your Synology NAS drive is via the DSM pack
 
 ## 4. Download Enclave from the Docker Registry
 
-Using the Docker search box on the `Registry` tab of the Docker package, search for `enclave` and download the `enclavenetworks/enclave` image from the container registry. Our docker image is also available directly on [Docker hub](https://hub.docker.com/r/enclavenetworks/enclave) .
+Using the search box on the `Registry` tab of the Docker package, search for `enclave` and download the `enclavenetworks/enclave` image from the container registry. The Enclave Docker image hosted on [Docker hub](https://hub.docker.com/r/enclavenetworks/enclave).
 
 ![Download Enclave from the Docker Registry](/img/guides/synology-docker-registry.png)
 
@@ -97,23 +95,17 @@ Using the Docker search box on the `Registry` tab of the Docker package, search 
 
 
 
-## 5. Download Enclave from the Docker Container Registry
+## 5. Launch an Enclave container
 
-Once the image is downloaded, the `Launch` button in the `Image` tab will become available, click this.
+Once the Enclave image is downloaded, the `Launch` button (shown below) in the `Image` tab will become available, click this.
 
 ![Download Enclave from the Docker Container Registry](/img/guides/synology-docker-image.png)
 
-<br />
-
-
-
-## 6. Configure and launch Enclave
-
-Now we are ready to configure and launch the Enclave container. First lets give the container a name, we've used `enclave`. We'll also need to be sure to check `Execute container using high privilege`, this causes DSM to pass the `--privileged` to Docker, which effectively enables the container to request `--cap-add NET_ADMIN` (Perform various network-related operations) and `--device /dev/net/tun` (Allows you to run devices inside the container).
+Now we are ready to setup the Enclave container. First, give the container a name, we've used `enclave`. Also need to be sure to check `Execute container using high privilege`, this causes DSM to pass the `--privileged` to Docker, which effectively enables the container to request `--cap-add NET_ADMIN` (Perform various network-related operations) and `--device /dev/net/tun` (Allows devices to run inside the container).
 
 ![Configure Docker Container](/img/guides/synology-docker-create-container.png)
 
-Next select `Advanced Settings`.
+Before clicking `Next`, open the `Advanced Settings` dialog.
 
 * Under the `Advanced Settings` tab
 
@@ -121,29 +113,29 @@ Next select `Advanced Settings`.
 
 * Under the `Volume` tab
 
-   * Select `Add Folder` and create a mouth path for `/etc/enclave/profiles` in the Docker directory on your DiskStation. This is where Enclave will write its configuration, private keys, and certificates to persist between reboots.
+   * Select `Add Folder`. Create a mouth path to `/etc/enclave/profiles` in the `docker` directory on your DiskStation. This is where Enclave will write its configuration file, private keys, and certificates to persist between reboots.
 
       ![Create a volume for Enclave configuration data](/img/guides/synology-docker-container-volume-settings.png)
 
 * Under the `Network` tab
 
-   * Select the check box to `Use the same network as Docker host`. This will allow you to access the Synology NAS drive via the Enclave network.
+   * Select the checkbox to `Use the same network as Docker host`. This will allow you to access the Synology NAS drive via the Enclave network.
 
 * Under the `Environment` tab
 
-   * Define a new Environment Variable called `ENCLAVE_ENROLMENT_KEY` and set its value to a valid (and enabled) enrolment key from your Enclave account.
+   * Define a new Environment Variable called `ENCLAVE_ENROLMENT_KEY` and set its value to a valid (and enabled) enrolment key from your Enclave account. Be careful not to include whitespace!
 
       ![Configure an enrolment key](/img/guides/synology-docker-container-enrolment-key.png)
 
-      This key is only used the first time Enclave runs inside the Docker container to obtain a certificate, once Enclave has successfully started once and written a profile to disk, it is safe to remove this environment variable.
+      This Enrolment key is only used the first time Enclave runs. When Enclave has successfully started once and written a profile to disk, it is safe to remove this environment variable.
 
-      > Enrolment keys are available from the [Enclave Portal](https://portal.enclave.io/) and determine which systems can register to your Enclave account, **keep them secret**.
+      > Enrolment keys are available from the [Enclave Portal](https://portal.enclave.io/) and determine which systems can register to your Enclave account, so we recommend that you **keep them secret**.
 
-   * Leave the `Execution Command` as the default value of `run` and click Apply.
+   * Leave the `Execution Command` set to the default value of `run` and click Apply.
 
 <br />
 
-Congratulations! You've finished configuring your container, click Done to Launch your Enclave container.
+Congratulations! You've finished configuring your container, click `Done` to Launch.
 
    ![Launch the Enclave Docker Container](/img/guides/synology-docker-launch-container.png)
 
@@ -151,7 +143,7 @@ Congratulations! You've finished configuring your container, click Done to Launc
 
 
 
-## 6. Connect to the Disk Station with Enclave
+## 6. Connect to the NAS with Enclave
 
 Your Enclave container is starting up and will enrol to your account, within a 1 or 2 seconds your Enclave container will be happily humming away in the background. Let's create a connection to another system running Enclave.
 
@@ -179,7 +171,7 @@ For more information about how to use the CLI, or to learn more about Identities
 
 Now you've added some connections, be sure to check the [DNS forwarding](https://docs.enclave.io/kb/how-to-configure-dns-forwarding-on-linux.html) is enabled on any peers which you're connected to so they can access your Synology NAS drive using a friendly DNS hostname like `diskstation.enclave`.
 
-Welcome to your own personal Internet!
+Welcome to your own personal (dark) Internet!
 
 <br />
 <br />
@@ -187,7 +179,7 @@ Welcome to your own personal Internet!
 
 # <a name="supported-models"></a> Supported Models
 
-This tutorial requires Docker to be installed on your Synology NAS device which, at the time of writing, only runs on Synology NAS drives from the Plus Series product line (not the Value Series). Please see the [Docker](https://www.synology.com/en-uk/dsm/packages/Docker) package for an up to date list of supported models.
+This tutorial requires Docker to be installed on your Synology NAS drive which, at the time of writing, only runs on Synology NAS drives from the Plus Series product line (not the Value Series). Please see the [Docker](https://www.synology.com/en-uk/dsm/packages/Docker) package for an up to date list of supported models.
 
 | Series | Supported Models |
 |---|---|
