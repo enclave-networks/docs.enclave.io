@@ -49,7 +49,7 @@ For Enclave to create a virtual network interface, we'll need to ensure that the
 
 ## 2. Install the TUN kernel module
 
-With SSH enabled, log into your NAS and check to see if the `tun` kernel module is installed and enabled.
+With SSH enabled, log into your NAS using the _admin_ account and check to see if the `tun` kernel module is installed and enabled.
 
 ```bash
 $ lsmod | grep -w tun
@@ -70,7 +70,42 @@ tun                    19133  0
 ![Install the TUN kernel module](/img/guides/synology-insmod-tun.png)
 
 > We don't need SSH access any more, if you're not going to use it again please go back and disable the SSH service in the DSM Control Panel.
- 
+
+This was not a permanent change, the module will be unloaded the next time the system reboots, so lets create a script which can be scheduled to run on start-up which re-instates `tun.ko`.
+
+- Switch to root 
+
+   ```
+   $ sudo su -
+   ```
+
+- Create the following script on your Synology file system by typing `vim /volume1/enable-tun.sh`
+
+   ```
+   #!/bin/sh
+
+   if ( [ ! -c /dev/net/tun ] ); then
+      if ( [ ! -d /dev/net ] ); then
+         mkdir -m 755 /dev/net
+      fi
+      mknod /dev/net/tun c 10 200
+   fi
+
+   if ( !(lsmod | grep -q "^tun\s") ); then
+      insmod /lib/modules/tun.ko
+   fi
+   ```
+
+- Save the file with `[escape]` followed by the keys `:wq!`
+
+- Mark the file as executable 
+
+   ```
+   chmod +x /volume1/enable-tun.sh
+   ```
+
+- Now create a scheduled task to run this script on start-up: Log in to your Synology NAS drive web interface, go to **Control Panel** > **Task Scheduler** and create a new `User-defined script` as a `Triggered Task`. Name the task `Enable TUN`, set the user to be `root` and the event as `Boot-up`. Then, in the `Task Settings` tab enter `bash /volume1/enable-tun.sh` as the User-defined script and hit OK. To test if the script worked, after restarting your NAS drive run `lsmod | grep -w tun` to see if the TUN module was successfully re-loaded.
+
 <br />
 
 
