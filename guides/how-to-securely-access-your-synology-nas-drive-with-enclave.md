@@ -71,9 +71,9 @@ tun                    19133  0
 
 > We don't need SSH access any more, if you're not going to use it again please go back and disable the SSH service in the DSM Control Panel.
 
-This was not a permanent change, the module will be unloaded the next time the system reboots, so lets create a script which can be scheduled to run on start-up which re-instates `tun.ko`.
+This was not a permanent change, the module will be unloaded the next time the system reboots, so lets create a script which can be scheduled to run on start-up which will re-install `tun.ko` at boot.
 
-- Switch to root 
+- Switch to root
 
    ```
    $ sudo su -
@@ -104,7 +104,7 @@ This was not a permanent change, the module will be unloaded the next time the s
    chmod +x /volume1/enable-tun.sh
    ```
 
-- Now create a scheduled task to run this script on start-up: Log in to your Synology NAS drive web interface, go to **Control Panel** > **Task Scheduler** and create a new `User-defined script` as a `Triggered Task`. Name the task `Enable TUN`, set the user to be `root` and the event as `Boot-up`. Then, in the `Task Settings` tab enter `bash /volume1/enable-tun.sh` as the User-defined script and hit OK. To test if the script worked, after restarting your NAS drive run `lsmod | grep -w tun` to see if the TUN module was successfully re-loaded.
+- Now create a scheduled task to run this script on start-up: Log in to your Synology NAS drive web interface, go to **Control Panel** > **Task Scheduler** and create a new `User-defined script` as a `Triggered Task`. Name the task `Enable TUN`, set the user to be `root` and the event as `Boot-up`. Then, in the `Task Settings` tab enter `bash /volume1/enable-tun.sh` as the User-defined script and hit OK. To test if the script works, after restarting your NAS log back into SSH and run `lsmod | grep -w tun` to check that the TUN module was successfully re-loaded.
 
 <br />
 
