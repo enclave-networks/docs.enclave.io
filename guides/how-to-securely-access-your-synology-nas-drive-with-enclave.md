@@ -81,20 +81,20 @@ This was not a permanent change, the module will be unloaded the next time the s
 
 - Create the following script on your Synology file system by typing `vim /volume1/enable-tun.sh`
 
-   ```
-   #!/bin/sh
+  ```
+  #!/bin/sh
 
-   if ( [ ! -c /dev/net/tun ] ); then
-      if ( [ ! -d /dev/net ] ); then
-         mkdir -m 755 /dev/net
-      fi
-      mknod /dev/net/tun c 10 200
-   fi
+  if ( [ ! -c /dev/net/tun ] ); then
+     if ( [ ! -d /dev/net ] ); then
+        mkdir -m 755 /dev/net
+     fi
+     mknod /dev/net/tun c 10 200
+  fi
 
-   if ( !(lsmod | grep -q "^tun\s") ); then
-      insmod /lib/modules/tun.ko
-   fi
-   ```
+  if ( !(lsmod | grep -q "^tun\s") ); then
+     insmod /lib/modules/tun.ko
+  fi
+  ```
 
 - Save the file with `[escape]` followed by the keys `:wq!`
 
