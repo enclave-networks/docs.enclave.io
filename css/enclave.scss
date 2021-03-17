@@ -818,16 +818,14 @@ nav.navbar {
         }
 
         p {
-            margin: 24px 0;
+            margin: 24px 0 12px 0;
         }
 
         code {
-            white-space: nowrap;
             font-size: 1em;
         }
 
         pre code {
-            white-space: pre-wrap;
             font-size: 1em;
             font-family: $font-code;
             font-weight: 400;

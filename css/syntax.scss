@@ -76,7 +76,7 @@ pre {
 }
 
 .highlight  { 
-	margin: 0 0 24px 0;
+	margin: 6px 0 24px 0;
 	background: #ececec35;
 }
 
@@ -104,6 +104,10 @@ pre {
     line-height: 1.5em;
     overflow: auto;
 	overflow-y: hidden;
+
+	code {
+		white-space: pre;
+	}
 }
 
 .highlight .lineno {
