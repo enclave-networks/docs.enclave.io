@@ -108,15 +108,6 @@ html, body {
     }
     
     blockquote {
-        padding: 18px 20px;
-        margin: 0 0 20px;
-    
-        p {
-            padding: 0;
-        }
-    }
-    
-    blockquote {
         clear: both;
         font-size: inherit;
         line-height: 22px;
@@ -124,10 +115,12 @@ html, body {
         border: 1px solid #f3e2c9;
         border-radius: 3px;
         margin: 32px 0 32px 0;
-        padding-left: 60px;
+        padding: 18px 20px 12px 54px;
         position: relative;
     
+    
         p {
+            padding: 0;
             font-family: $font-body;
             color: $black;
             font-size: 14px;
@@ -811,9 +804,10 @@ nav.navbar {
             margin-bottom: 16px;
         }
         
-        p, li {
-            line-height: 28px;
-            font-size: 14px;
+        p, 
+        li {
+            line-height: 1.6em;
+            font-size: 1em;
             font-family: $font-body;
             color: #505356;
             font-weight: 400;
@@ -823,7 +817,11 @@ nav.navbar {
             }
         }
 
-        code {        
+        p {
+            margin: 24px 0;
+        }
+
+        code {
             white-space: nowrap;
             font-size: 1em;
         }
@@ -835,18 +833,46 @@ nav.navbar {
             font-weight: 400;
         }
 
-        ol {
+        ol, ul {
             li {
-                margin: 16px 0;
+                margin: 8px 0;
+
+                figure {
+                    margin: 6px 0;
+                }
             }
         }
 
         ul {    
+            margin: 20px 0;
+
+            ul {
+                margin: 8px 0 12px 0;
+            }
+        }
+
+        .toc-ul-root {
+
             margin-top: 0;
-            margin-bottom: 20px;
+
+            .toc-heading {
+                margin-bottom: 8px !important;
+            }
+
+            li {
+                margin: 0 !important;
+
+                a {
+                    padding: 6px 15px;
+                }
+            }
         }
 
         blockquote {
+            p {
+                margin: 3px 0;
+            }
+
             ul:last-child {
                 margin-bottom: 0;
             }
@@ -859,7 +885,7 @@ nav.navbar {
         h2 {
             font-size: 26px;
             color: $light-black;
-            margin: 100px 0 16px 0;
+            margin: 70px 0 16px 0;
             border-bottom: 1px solid #e5e5e5;
         }
 
