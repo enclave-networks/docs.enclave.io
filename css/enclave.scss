@@ -649,7 +649,7 @@ nav.navbar {
     padding: 70px 0 0 0;
 
     #hero {
-        padding: 70px 0;
+        padding: 50px 0 70px 0;
 
         h1 {
             border: none;
@@ -665,7 +665,7 @@ nav.navbar {
         p {
             color: #666;
             font-family: $font-body;
-            font-size: 16pt;
+            font-size: 1.4em;
             max-width: 530px;
             line-height: 1.6;
             margin: 16px auto 0 auto;
