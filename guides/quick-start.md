@@ -14,7 +14,7 @@ redirect_from:
 
 # {{page.title}}
 
-> **Note:** This guide applies to the following operating systems:
+> **This guide applies to the following operating systems:**
 > * Windows 7, 8 and 10
 > * Windows Server 2012, 2016 and 2019
 > * Ubuntu 16.04 LTS and 18.04 LTS
