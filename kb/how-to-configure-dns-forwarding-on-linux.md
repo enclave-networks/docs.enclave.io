@@ -21,7 +21,7 @@ The local Enclave name server will resolve peers both by their peer description 
 
 DNS resolution of a peer with the description `primary.redis.service.lon` using Dig:
 
-```
+```bash
 [centos@localhost ~]$ dig @100.105.173.218 primary.redis.service.lon.enclave A
 
 ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-9.P2.el7 <<>> @100.105.173.218 primary.redis.service.lon.enclave A
@@ -63,7 +63,7 @@ rtt min/avg/max/mdev = 0.881/0.912/0.985/0.047 ms
 
 > **Security Note:** The local Enclave name server will *not* respond to queries from connected peers despite listening on port 53 of the virtual network interface ip address. The name server will only reply to queries which originated from the local system.
 
-## CentOS 7 (dhclient)
+## CentOS 7
 
 By default, the `/etc/resolv.conf` file is configured in CentOS by `/usr/sbin/dhclient-script`. To add the local Enclave name server to the search list it must be added to `/etc/dhcp/dhclient.conf` using the `prepend` option.
 
@@ -76,9 +76,9 @@ retry 60;
 
 Reboot the operating system to enable the change. You should see the Enclave name server prepended to the top of `/etc/resolv.conf`
 
-> **Important:** `100.66.110.73` is not the address of your local Enclave name server. Find your system's virtual address by running `enclave status` and look for the virtual address under local identity. Alternatively use `ip addr`.
+> **Important:** `100.66.110.73` is not the address of your local Enclave name server, it's an example. Find your system's virtual address by running `enclave status` and look for the virtual address under local identity. Alternatively use `ip addr`.
 
-## Ubuntu 16.04 (resolvconf)
+## Ubuntu 16.04
 
 By default, Ubuntu 16.04 uses `resolvconf` to manage the contents of `/etc/resolv.conf`. To add the local Enclave name server to the search order, add the local Enclave virtual address using the *nameserver* directive in `/etc/resolvconf/resolv.conf.d/head`
 
@@ -90,9 +90,9 @@ nameserver 100.66.110.73
 
 Reload resolvconf to run the update scripts and apply the changes: `sudo resolvconf -u`
 
-> **Important:** `100.66.110.73` is not the address of your local Enclave name server. Find your system's virtual address by running `enclave status` and look for the virtual address under local identity. Alternatively use `ifconfig`.
+> **Important:** `100.66.110.73` is not the address of your local Enclave name server, it's an example. Find your system's virtual address by running `enclave status` and look for the virtual address under local identity. Alternatively use `ifconfig`.
 
-## Ubuntu 18.04 and higher (systemd-resolved)
+## Ubuntu 18.04 and higher
 
 By default, Ubuntu 18.04 uses `systemd-resolved` to manage the contents of `/etc/resolv.conf` and configures the system to use an internal DNS stub resolver for DNS queries by setting the nameserver in `/etc/resolv.conf` to `127.0.0.53`. In order to add the local Enclave name server to the Global search order, add the local Enclave virtual address using the *DNS* directive in `/etc/systemd/resolved.conf`
 
@@ -107,6 +107,10 @@ Restart the service
 ubuntu@localhost:~$ sudo systemctl restart systemd-resolved
 ```
 
-> **Important:** `100.66.110.73` is not the address of your local Enclave name server. Find your system's virtual address by running `enclave status` and look for the virtual address under local identity. Alternatively use `ip addr`.
+Your should now be able to resolve `.enclave` hostnames.
 
-> **Important:** If after setting the `DNS=100.66.110.73` in `/etc/systemd/resolved.conf` you find that name resolution fails with the message `Name or service not known` check that `/etc/resolv.conf` correctly points to the local systemd-resolved DNS stub resolver address `127.0.0.53` and that the systemd-resolved stub resolver service is running.   
+### Troubleshooting
+
+If after setting the value of `DNS` in `/etc/systemd/resolved.conf` you find that name resolution fails with the message `Name or service not known` check that `/etc/resolv.conf` correctly points to the local systemd-resolved DNS stub resolver address `127.0.0.53` and that the systemd-resolved stub resolver service is running.   
+
+> **Important:** `100.66.110.73` is not the address of _your local Enclave name server, it's an example. Find your system's virtual address by running `enclave status` and look for the virtual address under local identity. Alternatively use `ip addr`.
