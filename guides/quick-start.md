@@ -15,9 +15,8 @@ redirect_from:
 # {{page.title}}
 
 > **This guide applies to the following operating systems:**
-> * Windows 7, 8 and 10
-> * Windows Server 2012, 2016 and 2019
-> * Ubuntu 16.04 LTS and 18.04 LTS
+> * Windows 7, 8 and 10 and Server 2012, 2016 and 2019
+> * Ubuntu 14.04 LTS, 16.04 LTS, 18.04 LTS, 18.10, 20.04 LTS
 > * CentOS 7
 
 Enclave is software which builds private, secure and directly connected computer networks.
