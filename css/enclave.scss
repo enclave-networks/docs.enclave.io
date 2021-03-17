@@ -3,6 +3,7 @@
 $font-body: inter,Helvetica,sans-serif;
 $font-heading: Lato,Helvetica,sans-serif;
 $font-roboto: Roboto,Helvetica,sans-serif;
+$font-code: "Source Code Pro",Consolas,"Courier New",monospace;
 
 $white: #fff;
 $dark-black: #111;
@@ -123,7 +124,8 @@ html, body {
         border: 1px solid #f3e2c9;
         border-radius: 3px;
         margin: 32px 0 32px 0;
-        padding-left: 50px;
+        padding-left: 60px;
+        position: relative;
     
         p {
             font-family: $font-body;
@@ -134,10 +136,10 @@ html, body {
         &::before {
             font-family: "FontAwesome";
             font-size: 1.5em;
-            position: relative;
+            position: absolute;
             content: '\f05a';
-            left: -30px;
-            top: 2px;
+            left: 21px;
+            top: 21px;
             color: #464646;
             
             display: inline-block;
@@ -821,22 +823,16 @@ nav.navbar {
             }
         }
 
-        .highlight {
-            background: #ececec35;
-
-            > pre {
-                border: none;
-            }
-        }
-
         code {        
             white-space: nowrap;
-            font-size: 14px;
+            font-size: 1em;
         }
 
         pre code {
             white-space: pre-wrap;
-            font-size: 14px;
+            font-size: 1em;
+            font-family: $font-code;
+            font-weight: 400;
         }
 
         ol {
@@ -863,7 +859,8 @@ nav.navbar {
         h2 {
             font-size: 26px;
             color: $light-black;
-            margin: 56px 0 16px 0;
+            margin: 100px 0 16px 0;
+            border-bottom: 1px solid #e5e5e5;
         }
 
         h2:first-child {
