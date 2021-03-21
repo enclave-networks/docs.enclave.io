@@ -23,16 +23,14 @@ $font-inter: inter,Helvetica,sans-serif;
 .toc { border: 1px solid #ddd; border-radius: 4px 4px 0 0; }
 .toc .toc-heading { background-color: #f5f5f5; font-weight: bold; } */
 
-.toc { }
+.toc { font-family: $font-inter; }
 .toc.affix { position: static; }
-.toc-heading { color: #333333; border-radius: 6px 6px 0 0; border-bottom: 1px solid #e5e5e5; padding: 10px 15px; font-weight: normal; margin: 0 0 10px 0; }
+.toc-heading { font-family: $font-inter; color: #333333; border-radius: 6px 6px 0 0; border-bottom: 1px solid #e5e5e5; padding: 10px 15px; font-weight: normal; margin: 0 0 10px 0; }
 .toc-heading i { padding-right: 5px; }
-.toc-ul-root li a { 
+.toc-ul-root li a {
     font-family: $font-inter; 
     letter-spacing: -0.04em; 
 }
-
-
 
 .toc .nav > li a { padding-top: 3px; padding-bottom: 3px; border-left: 1px solid transparent; }
 
