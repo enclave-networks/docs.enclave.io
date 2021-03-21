@@ -308,8 +308,7 @@ html, body {
     }
     
     ::selection {
-        color: $white;
-        background: rgba(0, 23, 47, 0.7);
+        background: #CBEAFB;
     }
     
     #page-content
@@ -806,10 +805,10 @@ nav.navbar {
         
         p, 
         li {
-            line-height: 1.6em;
-            font-size: 1em;
+            line-height: 1.8em;
+            font-size: 1.12em;
             font-family: $font-body;
-            color: #505356;
+            color: rgba(0,0,0,.6);
             font-weight: 400;
 
             strong {
@@ -876,6 +875,13 @@ nav.navbar {
             }
         }
 
+        h1,h2,h3,h4,h5 {
+            font-family: $font-body;
+            font-weight: 500;
+            letter-spacing: -.03em;
+            line-height: 1.3em;
+        }
+        
         h2, h3, h4 {
             border-bottom: none;
         }
@@ -898,6 +904,104 @@ nav.navbar {
 
         h4 {
             font-weight: bold;
+        }
+    }
+
+    #section-tutorial-tiles
+    {
+        position: relative;
+        max-width: 1070px;
+        margin: 0 auto 70px auto;
+
+        .tile:before {
+            padding: 7px 10px 6px 10px;
+            border-radius: 4px;
+            font-family: $font-body;
+            font-size: .95em;
+            color: #444;
+            border: 1px solid #eaeaea;
+            display: block;
+            position: relative;
+            top: -52px;
+            left: 2px;
+            text-align: center;
+            background-color: #e6e6e6;
+        }
+
+        .tile {
+            margin: 70px 0 0 0;
+            display: inline-block;
+            border-radius: 6px;
+            padding: 36px 36px 16px 36px;
+            box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.015);
+            transition: all .1s ease;
+            border: 1px solid #eaeaea;
+            background-color: #fafafa;
+            text-decoration: none;
+
+            .title {
+                font-family: $font-body;
+                font-size: 1.2em;
+                font-weight: 500;
+                text-transform: uppercase;
+                color: #444;
+                letter-spacing: .015em;
+
+                i {
+                    font-size: 1.1em;
+                    margin-right: 10px;
+                }
+            }
+
+            .text {
+                margin: 0 0 0 35px;
+
+                p {
+                    margin: 12px 0 20px 0;
+                }
+            }
+
+            button {
+                margin: 50px 0 16px 35px;
+                font-size: .9em;
+                letter-spacing: .01em;
+                line-height: 1.5em;
+                text-transform: uppercase;
+                color: #999;
+                text-align: left;
+                display: block;
+
+                i {
+                    margin-left: 10px;
+                    color: #bbb;
+                }
+            }
+        }
+
+        .tile:hover {
+            background-color: #fff;
+            box-shadow: 0 10px 18px #031b4e14, 0 3px 6px 0 #00000005;
+            
+            button {
+                color: inherit;
+
+                i {
+                    color: inherit;
+                }
+            }
+        }
+        
+        .tile:hover::before {
+            background-color: #008cde;
+            color: #fff;
+        }
+
+        .locally-managed:before {
+            content: 'Locally managed. End-users can control Enclave';
+        }
+    
+        .centrally-managed:before {
+            content: 'Centrally managed. End-users have no control';
         }
     }
 
@@ -1062,7 +1166,7 @@ nav.navbar {
                 border-radius: 8px;
                 text-align: left;
                 padding: 36px 36px 16px 36px;
-                box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.015); /* 0px 0px 8px 2px rgba(0, 0, 0, 0.04), */
+                box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.015);
                 min-width: 215px;
                 text-decoration: none;
                 transition: all .1s ease;
@@ -1114,12 +1218,13 @@ nav.navbar {
                 }
             }
 
-            .learn-more {
+            .learn-more {                
                 span {
                     padding: 8px 13px;
                     border-radius: 4px;
                     color: #fff;
-
+                    user-select: none;
+                
                     &.getting-started {
                         background-color: #8700ca;
                     }
