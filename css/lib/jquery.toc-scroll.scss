@@ -25,10 +25,9 @@ $font-inter: inter,Helvetica,sans-serif;
 
 .toc { }
 .toc.affix { position: static; }
-.toc-heading { color: #333333; border-radius: 6px 6px 0 0; border-bottom: 1px solid #e5e5e5; padding: 10px 15px; font-weight: normal; font-size: 14px; margin: 0 0 10px 0; }
-.toc-heading i { padding-right: 5px; font-size: 14px; }
+.toc-heading { color: #333333; border-radius: 6px 6px 0 0; border-bottom: 1px solid #e5e5e5; padding: 10px 15px; font-weight: normal; margin: 0 0 10px 0; }
+.toc-heading i { padding-right: 5px; }
 .toc-ul-root li a { 
-    font-size: 1em; 
     font-family: $font-inter; 
     letter-spacing: -0.04em; 
 }
