@@ -29,10 +29,11 @@ $font-inter: inter,Helvetica,sans-serif;
 .toc-heading i { padding-right: 5px; }
 .toc-ul-root li a {
     font-family: $font-inter; 
-    letter-spacing: -0.04em; 
+    font-size: 1em;
+    letter-spacing: -0.01em; 
 }
 
-.toc .nav > li a { padding-top: 3px; padding-bottom: 3px; border-left: 1px solid transparent; }
+.toc .nav > li a { padding-top: 6px; padding-bottom: 6px; border-left: 1px solid transparent; }
 
 .toc .nav > li.active > a,
 .toc .nav > li.active > a:hover ,

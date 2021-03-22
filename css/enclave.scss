@@ -19,7 +19,7 @@ $box-shadow-hover: 0 3px 6px 0px rgba(27, 31, 35, 0.30);
 *,
 *:before,
 *:after { box-sizing: inherit; }
-html { box-sizing: border-box; font-size: 10px; }
+html { box-sizing: border-box; }
 body { margin: 0; padding: 0; }
 p, h1, h2, h3, h4, h5, h6 { margin-top: 0; }
 a { text-decoration: none; }
@@ -34,6 +34,8 @@ html, body {
     -webkit-overflow-scrolling : touch !important;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+
+    font-size: 14px;
 
     h1,h2,h3,h4,h5,h6 {
         font-family: $font-body;
@@ -97,14 +99,6 @@ html, body {
         font-weight: 300;
         word-wrap: break-word;
         color: #777;
-    }
-    
-    p, 
-    li,
-    td,
-    blockquote {
-        font-size: 15px;
-        line-height: 1.8;
     }
     
     blockquote {
@@ -787,7 +781,6 @@ nav.navbar {
 #docs-index-page,
 #docs-api,
 #docs-handbook,
-#docs-policy,
 #docs-protocol,
 #docs-knowledge-base,
 #docs-tutorials-and-guides-base,
@@ -814,6 +807,10 @@ nav.navbar {
                 font-family: $font-body;
                 color: rgba(0,0,0,.6);
                 font-weight: 400;
+
+                a {
+                    font-size: .9346em;
+                }
             }
     
             p {
@@ -829,22 +826,22 @@ nav.navbar {
                 font-family: $font-code;
                 font-weight: 400;
             }
+
+            ul, 
+            ol {
+                margin: 20px 0;
     
-            ol, ul {
+                ul, 
+                ol {
+                    margin: 20px 0;
+                }
+
                 li {
                     margin: 8px 0 16px 0;
     
                     figure {
                         margin: 6px 0;
                     }
-                }
-            }
-    
-            ul, ol {    
-                margin: 20px 0;
-    
-                ul, ol {
-                    margin: 8px 0 12px 0;
                 }
             }
     
@@ -1293,149 +1290,6 @@ nav.navbar {
             }
         }
     }
-}
-
-#docs-policy {
-    #section-all-policies {
-        background-color: #f5f7fa;
-
-        ul {
-            list-style: none;
-            margin: 0 auto;
-            padding: 60px 0 40px 12px;
-            text-align: center;
-            max-width: 700px;
-        }
-
-        li {
-            display: inline-block;
-            margin: 0 12px 22px 0;
-            font-weight: 600;
-        }
-
-        li a {
-            padding: 7px 12px 8px 12px;
-            font-size: 14px;
-            font-family: $font-heading;
-            border: 1px solid #e0e0e0;
-            border-radius: 3px;
-            text-decoration: none;
-            background-color: #fcfcfc;
-            opacity: 0.6;
-            transition: all .2s ease-in-out;
-            color: #337ab7;
-        }
-        
-        li a:hover {
-            background-color: $white;
-            opacity: 1;
-        }
-
-        li.active a {
-            background-color: #374365;
-            border: 1px solid #374365;
-            color: $white;
-            opacity: 1;
-        }
-    }
-  
-    #section-policy-library {
-        padding: 40px 0 0 0;
-        position: relative;
-        text-align: center;
-
-        ul {
-            margin: 70px 0 0 0;
-            padding: 0;
-            list-style: none;
-            text-align: center;
-
-			li {
-				margin: 0 12px 48px 0;
-				display: inline-block;
-
-				a {
-					text-decoration: none;
-					padding: 7px 12px 8px 12px;
-					padding: 17px 30px;
-					font-size: 14px;
-					font-family: "Lato";
-					border: 1px solid #e0e0e0;
-					border-radius: 3px;
-					text-decoration: none;
-					background-color: #fcfcfc;
-					transition: all .2s ease-in-out;
-					color: #337ab7;
-				}
-
-				a:hover {
-				   background-color: #374365;
-				   border: 1px solid #374365;
-				   color: $white;
-				}
-			}
-        }
-    }
-
-    #section-page {
-
-        #orderedList {
-
-            .outdent {
-                padding-inline-start: 0;
-                border-top: 1px dashed #eee;
-            }
-    
-            ol {
-                counter-reset: item;
-                list-style: none;
-
-                h2 {
-                    margin: 26px 0 16px 0;
-                    font-weight: 500;
-                }
-
-                ul {
-                    list-style-type: disc;
-                }
-            }
-
-            ol > li {
-                position: relative;
-                float: left;
-                margin: 0;
-            }
-
-            ol > li > h2:before,
-            ol > li > p:before { 
-                content: counters(item, ".") ".";
-                counter-increment: item;
-                display: inline-block;
-                padding-right: 5px;
-                font-weight: 500;
-            }
-        }
-
-        ol,
-        ul {
-            li {
-                margin: 0 0 8px 0;
-            }
-
-            li:last-child {
-                margin: 0;
-            }
-        }
-
-        table {
-            th {
-                white-space: nowrap;
-            }
-            th, td, li {
-                font-size: 13px;
-            }
-        }
-    }    
 }
 
 /************************************************************************************/
