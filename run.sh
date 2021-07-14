@@ -1,4 +1,4 @@
 #!/bin/sh
 
 docker build -t jekyll .
-docker run --rm -it -p 8080:8080 -v ${PWD}/src:/home jekyll
+docker run --rm -it -p 8081:8081 -v ${PWD}:/home jekyll
