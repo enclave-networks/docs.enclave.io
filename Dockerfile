@@ -1,6 +1,6 @@
 FROM enclavenetworks/jekyll:latest
 
-# copy Jekyll website from ./web into the container
+# copy Jekyll site to container
 COPY ./ .
 
 # run bundle install and then clear the directory
